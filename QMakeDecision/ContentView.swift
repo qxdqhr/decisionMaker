@@ -14,12 +14,19 @@ struct ContentView: View {
                 }
                 .tag(0)
             
+            MultiPlayerDecisionView()
+                .tabItem {
+                    Image(systemName: "person.3")
+                    Text("多人决策")
+                }
+                .tag(1)
+            
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("设置")
                 }
-                .tag(1)
+                .tag(2)
         }
         #else
         // macOS 使用侧边栏导航
@@ -34,8 +41,16 @@ struct ContentView: View {
                 }
                 
                 NavigationLink(
-                    destination: SettingsView(),
+                    destination: MultiPlayerDecisionView(),
                     tag: 1,
+                    selection: $selectedTab
+                ) {
+                    Label("多人决策", systemImage: "person.3")
+                }
+                
+                NavigationLink(
+                    destination: SettingsView(),
+                    tag: 2,
                     selection: $selectedTab
                 ) {
                     Label("设置", systemImage: "gear")

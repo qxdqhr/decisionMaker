@@ -6,9 +6,17 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 @main
 struct QMakeDecisionApp: App {
+    init() {
+        #if !EXTENSION
+        // 只在主应用中启用 WidgetCenter
+        WidgetCenter.shared.reloadAllTimelines()
+        #endif
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

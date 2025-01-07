@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedTab = 0
+    @StateObject private var sessionManager = MultipeerSessionManager()
     
     var body: some View {
         #if os(iOS)
@@ -41,7 +42,7 @@ struct ContentView: View {
                 }
                 
                 NavigationLink(
-                    destination: MultiPlayerDecisionView(),
+                    destination: MultiPlayerDecisionView(sessionManager: sessionManager),
                     tag: 1,
                     selection: $selectedTab
                 ) {
